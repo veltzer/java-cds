@@ -1,3 +1,5 @@
 get the list jars and somehow get them to here.
+	connect my machines with ssh.
+	put ssh client on the windows machine (mobaXterm).
 measure times.
 create a video demo.
