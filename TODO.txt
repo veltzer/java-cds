@@ -1,0 +1,3 @@
+get the list jars and somehow get them to here.
+measure times.
+create a video demo.
