@@ -1,0 +1,2 @@
+https://docs.oracle.com/en/java/javase/11/vm/class-data-sharing.html#GUID-7EAA3411-8CF0-4D19-BD05-DF5E1780AA91
+https://nipafx.dev/java-application-class-data-sharing/
