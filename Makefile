@@ -10,14 +10,14 @@ settings:
 
 .PHONY: time
 time:
-	time java -Xshare:off -XX:SharedArchiveFile=$(JSA_FILE) -jar app.jar
-	time java -Xshare:auto -XX:SharedArchiveFile=$(JSA_FILE) -jar app.jar
+	time ./wrap.py java -Xshare:off -XX:SharedArchiveFile=$(JSA_FILE) -jar sample.jar
+	time ./wrap.py java -Xshare:auto -XX:SharedArchiveFile=$(JSA_FILE) -jar sample.jar
 
 .PHONY: dump
 dump: $(JSA_FILE)
 
-$(JSA_FILE):
-	java -Xshare:dump -XX:SharedArchiveFile=$(JSA_FILE)
+$(JSA_FILE): sample.jar
+	java -Xshare:dump -XX:SharedArchiveFile=$(JSA_FILE) sample.jar
 
 .PHONY: clean
 clean:
