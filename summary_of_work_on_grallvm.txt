@@ -1,0 +1,53 @@
+
+From: Mark Veltzer
+
+High level description:
+
+Work was done in the last one and a half weeks to check the suitability of GraalVM
+for Amdocs needs and it performance. The results so far are promising: applications
+similar to Amdocs were tests with up to 120 jars so far with similar stacks (including
+various Spring Book stacks).
+
+The improvements between running a microservice with Java and with with GraalVM could
+be separated into 3 different asepcts:
+- load time of the app
+- run time
+- memory
+Both of these show improvements although load time shows higher improvement because
+of the my testing methodology.
+
+Load time
+
+Load time has improved by 637% on average (!). This is after pre-compilation ofcourse.
+It is not certain that we can maintain this number for a real amdocs heavy microservice
+but even if we can't the improvement should be significant as well.
+
+Run time
+
+Run has improved by 32%. This number is not as solid as the previous one since the tests
+we really simple and did not make the microservice work as hard as it can (this was not
+a heavy load test but rather a simple single web service call test). So this number can be
+either higher or lower for a real web service.
+
+Memory
+
+Memory has improved by 43%. However, this number should be trusted as this was a testing app
+and the memory improvement really depends on how an application uses memory and the testing
+app is not a good representative of a real application. However, we do expect an improvment
+for a real application but the size of the improvment is unknown until we test with a real
+amdocs microservice.
+
+All of results were obtained and averaged for serveral application stacks: small (no spring
+just JEE standard web app). Medium (20-40 jar medium web app with spring), large (100-140 jar
+full application stack with spring boot and other technologies).
+
+What was not tested
+
+- Debugging and monitoring was not tested for now. This means that monitoring and debugging
+a GraalVM based web service is different from a regular Java App. Tools for doing such
+debugging and monitoring do exist but have not yet been tested.
+
+Issues
+
+Stability of GraalVM on windows is stil an issue. All tests were done on Linux and I don't know
+about the Amdocs ecosystem enough to know how much support for windows is an issue.
