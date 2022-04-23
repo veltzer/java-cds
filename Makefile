@@ -4,6 +4,7 @@ JSA_FILE=classes.jsa
 
 .PHONY: all
 all: dump
+	@true
 
 settings:
 	java -XshowSettings:all 2> settings
