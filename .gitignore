@@ -1,4 +1,5 @@
 /*.jsa
+/.pydmt/
 /settings
 /*.list
 *.stamp
