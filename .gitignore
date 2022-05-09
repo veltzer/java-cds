@@ -5,3 +5,4 @@
 /settings
 /*.list
 *.stamp
+__pycache__
