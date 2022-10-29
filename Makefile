@@ -32,4 +32,9 @@ $(JSA_FILE): sample.jar
 
 .PHONY: clean
 clean:
-	rm -f $(JSA_FILE)
+	$(info doing [$@])
+	@rm -f $(JSA_FILE)
+.PHONY: clean_hard
+clean_hard:
+	$(info doing [$@])
+	@git clean -qffxd
