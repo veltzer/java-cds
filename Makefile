@@ -1,3 +1,12 @@
+##############
+# parameters #
+##############
+# do you want to show the commands executed ?
+DO_MKDBG:=0
+# do you want dependency on the Makefile itself ?
+DO_ALLDEP:=1
+
+
 JSA_FILE=classes.jsa
 # JSA_FILE=/usr/lib/jvm/java-11-openjdk-amd64/lib/server/classes.jsa
 
@@ -23,7 +32,6 @@ dump_list_classes:
 .PHONY: create_archive_from_classes
 create_archive_from_classes:
 	java -Xshare:dump -XX:SharedClassListFile=classes.list -XX:SharedArchiveFile=$(JSA_FILE) --class-path sample.jar
-
 .PHONY: dump
 dump: $(JSA_FILE)
 
@@ -38,3 +46,10 @@ clean:
 clean_hard:
 	$(info doing [$@])
 	@git clean -qffxd
+
+##########
+# alldep #
+##########
+ifeq ($(DO_ALLDEP),1)
+.EXTRA_PREREQS+=$(foreach mk, ${MAKEFILE_LIST},$(abspath ${mk}))
+endif # DO_ALLDEP
