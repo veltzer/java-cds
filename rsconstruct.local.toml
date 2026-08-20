@@ -1,1 +1,19 @@
 # Repo-specific overlay. Deep-merged over the canonical rsconstruct.toml.
+
+# The Makefile's default target (all: dump) generated a JVM class-data-sharing
+# archive from the committed sample.jar:
+#   java -Xshare:dump -XX:SharedArchiveFile=classes.jsa sample.jar
+# scripts/dump_cds.py runs that; the explicit processor keys it on sample.jar
+# and declares classes.jsa as the output. (The Makefile's time/settings/
+# dump_list_classes targets were manual .PHONY runtime benchmarks -- some using
+# sudo sysctl -- not part of the build.)
+[processor.explicit.cds]
+command = "scripts/dump_cds.py"
+inputs = ["sample.jar"]
+output_files = ["classes.jsa"]
+
+# A JRE provides java for the CDS dump.
+[dependencies]
+system = [
+    "default-jre",
+]
