@@ -6,14 +6,14 @@ reject_dot_src_dirs = true
 
 [analyzer.python]
 
-[processor.ruff]
+[processor.checker.ruff]
 src_dirs = ["scripts"]
 
 
-[processor.mypy]
+[processor.checker.mypy]
 src_dirs = ["scripts"]
 
-[processor.taplo]
+[processor.checker.taplo]
 src_files = [".rumdl.toml", "pyproject.toml", "rsconstruct.toml"]
 
 # ─── repo-specific configuration ────────────────────────────────────────────
@@ -25,7 +25,7 @@ src_files = [".rumdl.toml", "pyproject.toml", "rsconstruct.toml"]
 # and declares classes.jsa as the output. (The Makefile's time/settings/
 # dump_list_classes targets were manual .PHONY runtime benchmarks -- some using
 # sudo sysctl -- not part of the build.)
-[processor.explicit.cds]
+[processor.explicit.generic.cds]
 command = "scripts/dump_cds.py"
 inputs = ["sample.jar"]
 output_files = ["classes.jsa"]
@@ -37,10 +37,10 @@ system = [
 ]
 
 # lint the GitHub Actions workflow files with actionlint
-[processor.actionlint]
+[processor.checker.actionlint]
 src_dirs = [".github/workflows"]
 
 # ─── markdown ────────────────────────────────────────────────────────────────
 
-[processor.rumdl]
+[processor.checker.rumdl]
 src_files = ["README.md"]
